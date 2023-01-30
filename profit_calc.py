@@ -10,6 +10,7 @@ from modifier import Modifier
 from query.modifier_query import ModifierQuery
 import strategies.boss_farms as boss_farms
 import strategies.scarab_farm as scarab_farms
+import strategies.crafting as crafting
 
 stitched_demon = TradeObject(NameQuery("Mask of the Stitched Demon"))
 spirit_drinker = TradeObject(NameQuery("Mask of the Spirit Drinker"))
@@ -37,10 +38,9 @@ apex_of_sacrifice = TradeObject(CustomQuery(
     }))
 lst = QuantityList().append(spirit_drinker).append(summoning_vial).append(apex_of_sacrifice)
 
-strat = Strategy(lst, stitched_demon)
+#strat = Strategy(lst, stitched_demon)
 
-print("Temple Upgrade Stitched Demon: ", strat.calc_profit())
-
+#print("Temple Upgrade Stitched Demon: ", strat.calc_profit())
 
 #print("Scarab Exchange:", scarab_farms.gilded_scarab_exchange.calc_profit())
 #print("Scarab Farm:", scarab_farms.gilded_sextant_farm.calc_profit())

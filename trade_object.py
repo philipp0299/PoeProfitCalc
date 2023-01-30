@@ -1,5 +1,7 @@
 import requests
 import json
+
+import league
 import ratelimited_requests
 from currency_amount import CurrencyAmount
 
@@ -12,8 +14,8 @@ class TradeObject:
     def fetch_price(self):
         if self.price is None:
             headers = {'User-Agent': 'PoeProfitCalc (https://github.com/Dakri7/PoeProfitCalc.git)', 'accept': 'application/json'}
-            # TODO current league
-            api_endpoint = "http://www.pathofexile.com/api/trade/search/Sanctum"
+            curr_league = league.get_current_league()
+            api_endpoint = "http://www.pathofexile.com/api/trade/search/" + curr_league
             query_response = ratelimited_requests.post(api_endpoint, json=self.query, headers=headers)
             query_data = json.loads(query_response.content)
 

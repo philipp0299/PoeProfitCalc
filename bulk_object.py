@@ -2,6 +2,7 @@ import requests
 import json
 from currency_amount import CurrencyAmount
 import ratelimited_requests
+import league
 
 
 class BulkObject:
@@ -26,7 +27,8 @@ class BulkObject:
 
             headers = {'User-Agent': 'PoeProfitCalc (https://github.com/Dakri7/PoeProfitCalc.git)', 'accept': 'application/json'}
             # TODO current league
-            api_endpoint = "http://www.pathofexile.com/api/trade/exchange/Sanctum"
+            curr_league = league.get_current_league()
+            api_endpoint = "http://www.pathofexile.com/api/trade/exchange/" + curr_league
             query_response = ratelimited_requests.post(api_endpoint, json=query, headers=headers)
             query_data = json.loads(query_response.content)
             first_listing = list(query_data["result"].values())[0]

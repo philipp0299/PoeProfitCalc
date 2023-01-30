@@ -7,7 +7,7 @@ from currency_amount import CurrencyAmount
 
 
 def init():
-    uncrafted_rf_helmet= TradeObject(CustomQuery({"query": {
+    uncrafted_rf_helmet = TradeObject(CustomQuery({"query": {
             "type": "Eternal Burgonet",
             "stats": [
                 {
@@ -114,4 +114,5 @@ def init():
 
 
     finish_rf_helmet_strat = Strategy(StochasticList().append( CurrencyAmount(2, "divine"), 2.29).append(CurrencyAmount(1, "veiled-chaos-orb"), 2.29).append(uncrafted_rf_helmet, 1), finished_rf_helmet)
-    print(finish_rf_helmet_strat.calc_profit())
+
+init()
