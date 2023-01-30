@@ -26,7 +26,7 @@ class BulkObject:
 
             headers = {'User-Agent': 'PoeProfitCalc (https://github.com/Dakri7/PoeProfitCalc.git)', 'accept': 'application/json'}
             # TODO current league
-            api_endpoint = "http://www.pathofexile.com/api/trade/exchange/Kalandra"
+            api_endpoint = "http://www.pathofexile.com/api/trade/exchange/Sanctum"
             query_response = ratelimited_requests.post(api_endpoint, json=query, headers=headers)
             query_data = json.loads(query_response.content)
             first_listing = list(query_data["result"].values())[0]

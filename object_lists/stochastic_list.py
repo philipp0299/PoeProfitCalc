@@ -2,9 +2,11 @@ from currency_amount import CurrencyAmount
 
 
 class StochasticList:
-    def __init__(self, init_list=[]):
+    def __init__(self, init_list=None, init_chance=1):
+        if init_list is None:
+            init_list = []
         self.list = init_list
-        self.chance = []
+        self.chance = [init_chance] * len(init_list)
 
     def append(self, item, chance):
         self.list.append(item)

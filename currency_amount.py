@@ -31,6 +31,9 @@ class CurrencyAmount:
         chaos_equiv_target = chaos_equivalance_of_name(target)
         return self.amount * chaos_equiv_self / chaos_equiv_target
 
+    def fetch_price(self):
+        return self
+
 
 def display_name_to_name(name):
     for currency in poe_ninja_ids:
@@ -62,6 +65,7 @@ def chaos_equivalance_of_name(name):
     for line in poe_ninja_details:
         if line["currencyTypeName"] == name_to_display_name(name):
             return line["chaosEquivalent"]
+
 
 
 headers = {'User-Agent': 'PoeProfitCalc (https://github.com/Dakri7/PoeProfitCalc.git)', 'accept': 'application/json'}
