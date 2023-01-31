@@ -1,21 +1,35 @@
+from query.filter import Filter
+
+
 class ModifierQuery:
 
-    def __init__(self, *modifiers):
+    def __init__(self, *modifiers, base_type=None):
         if type(modifiers) is tuple:
-            self.modifiers = list(map(lambda mod: mod.get_modifier_json(), modifiers))
+            if type(modifiers[0]) is Filter:
+                self.filters = list(map(lambda mod: mod.to_json(), modifiers))
+            else:
+                self.filters = [Filter(modifiers).to_json()]
         else:
-            self.modifiers = modifiers
+            if type(modifiers) is Filter:
+                self.filters = [modifiers.to_json()]
+            else:
+                self.filters = [Filter(modifiers)]
+        self.base_type = base_type
 
     def get_query_string(self):
-        return {
-            "query": {
-                "stats": [
-                    {
-                        "type": "and",
-                        "filters": self.modifiers,
-                        "disabled": False
-                    }
-                ],
-                "status": "online"
+        if self.base_type is None:
+            return {
+                "query": {
+                    "stats": self.filters,
+                    "status": "online"
+                }
             }
-        }
+        else:
+            return {
+                "query": {
+                    "type": self.base_type,
+                    "stats": self.filters,
+                    "status": "online"
+                }
+            }
+
