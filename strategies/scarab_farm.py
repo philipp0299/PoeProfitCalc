@@ -1,12 +1,9 @@
 from bulk_object import BulkObject
-from modifier import Modifier
+from query.modifier import Modifier
 from query.modifier_query import ModifierQuery
-from query.type_query import TypeQuery
 from strategy import Strategy
 from trade_object import TradeObject
-from object_lists.stochastic_list import StochasticList
 from object_lists.evenly_distributed_list import EvenlyDistributedList
-from object_lists.quantity_list import QuantityList
 from object_lists.least_cost_list import LeastCostList
 
 winged_sextant_farm = None
