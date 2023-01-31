@@ -23,3 +23,15 @@ class Modifier:
                     "option": self.option
                 }
             }
+
+    def __str__(self):
+        if self.option is not None:
+            return self.modifier_id + "[" + str(self.option) + "]"
+        if self.vmin is None and self.vmax is None:
+            return self.modifier_id
+        if self.vmin is not None and self.vmax is not None:
+            return str(self.vmin) + " < " + self.modifier_id + " < " + str(self.vmax)
+        if self.vmin is not None:
+            return self.modifier_id + " < " + str(self.vmin)
+        if self.vmax is not None:
+            return self.modifier_id + " > " + str(self.vmax)

@@ -15,6 +15,7 @@ class ModifierQuery:
             else:
                 self.filters = [Filter(modifiers)]
         self.base_type = base_type
+        self.modifiers = list(modifiers)
 
     def get_query_string(self):
         if self.base_type is None:
@@ -33,3 +34,14 @@ class ModifierQuery:
                 }
             }
 
+    def __str__(self):
+        if len(self.modifiers) > 1:
+            back = "["
+            for i in range(len(self.modifiers)):
+                if not i == 0:
+                    back += ", "
+                back += str(self.modifiers[i])
+            back += "]"
+            return back
+        else:
+            return str(self.modifiers[0])

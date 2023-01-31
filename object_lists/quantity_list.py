@@ -18,3 +18,14 @@ class QuantityList:
         for i in range(len(self.list)):
             sum_price += self.list[i].fetch_price() * self.quantity[i]
         return sum_price
+
+    def __str__(self):
+        back = ""
+        for i in range(len(self.list)):
+            if not i == 0:
+                back += " + "
+            if type(self.list[i]) is CurrencyAmount:
+                back += str(self.list[i] * self.quantity[i])
+            else:
+                back += str(self.quantity[i]) + "x" + str(self.list[i])
+        return back

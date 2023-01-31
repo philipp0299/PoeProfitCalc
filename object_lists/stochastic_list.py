@@ -18,3 +18,14 @@ class StochasticList:
         for i in range(len(self.list)):
             sum_price += self.list[i].fetch_price() * self.chance[i]
         return sum_price
+
+    def __str__(self):
+        back = ""
+        for i in range(len(self.list)):
+            if not i == 0:
+                back += ", "
+            if type(self.list[i]) is CurrencyAmount:
+                back += str(self.list[i] * self.chance[i])
+            else:
+                back += str(self.chance[i]*100) + "% " + str(self.list[i])
+        return back

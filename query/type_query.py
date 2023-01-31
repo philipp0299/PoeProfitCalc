@@ -24,3 +24,6 @@ class TypeQuery:
                 "price": "asc"
             }
         }
+
+    def __str__(self):
+        return self.type

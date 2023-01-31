@@ -24,3 +24,6 @@ class NameQuery:
                 "price": "asc"
             }
         }
+
+    def __str__(self):
+        return self.name
