@@ -22,12 +22,12 @@ class TradeObject:
             query_string = self.query.get_query_string()
             query_response = ratelimited_requests.post(api_endpoint, json=query_string, headers=headers)
             if query_response.status_code == requests.codes.bad_request:
-                sys.stderr.write("Item with this data not found. Assuming value of 0. This is not correct! \n")
-                return CurrencyAmount(0, "divine")
+                raise RuntimeError("Query for this item doesn't exist")
             query_data = json.loads(query_response.content)
 
             if len(query_data['result']) == 0:
-                sys.stderr.write("No item found for the given mods. Assuming value of 0. This is not correct! \n")
+                sys.stderr.write("No item found for the given mods. Assuming value of 0! \n")
+                sys.stderr.write("Search url for the item: https://www.pathofexile.com/trade/search/Sanctum/" + query_data['id'] + "\n")
                 return CurrencyAmount(0, "divine")
             item_id = query_data['result'][self.nth_result]
 
