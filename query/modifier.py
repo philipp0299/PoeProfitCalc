@@ -32,6 +32,6 @@ class Modifier:
         if self.vmin is not None and self.vmax is not None:
             return str(self.vmin) + " < " + self.modifier_id + " < " + str(self.vmax)
         if self.vmin is not None:
-            return self.modifier_id + " < " + str(self.vmin)
+            return self.modifier_id + " > " + str(self.vmin)
         if self.vmax is not None:
-            return self.modifier_id + " > " + str(self.vmax)
+            return self.modifier_id + " < " + str(self.vmax)

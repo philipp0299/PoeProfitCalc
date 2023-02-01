@@ -36,7 +36,10 @@ class ModifierQuery:
 
     def __str__(self):
         if len(self.modifiers) > 1:
-            back = "["
+            back = ""
+            if self.base_type is not None:
+                back += self.base_type
+            back += "["
             for i in range(len(self.modifiers)):
                 if not i == 0:
                     back += ", "

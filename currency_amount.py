@@ -34,6 +34,7 @@ class CurrencyAmount:
     def fetch_price(self):
         return self
 
+# TODO Add manual override for divine price
 
 def display_name_to_name(name):
     for currency in poe_ninja_ids:

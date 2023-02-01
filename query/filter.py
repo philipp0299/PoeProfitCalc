@@ -1,6 +1,6 @@
 class Filter:
     def __init__(self, modifiers=None, filter_type="and", filter_value_min=None, filter_value_max=None):
-        if type(modifiers) is not list:
+        if type(modifiers) is not list and type(modifiers) is not tuple:
             self.modifier_json = [modifiers.to_json()]
         else:
             self.modifier_json = list(map(lambda mod: mod.to_json(), modifiers))

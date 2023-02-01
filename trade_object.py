@@ -7,11 +7,12 @@ from currency_amount import CurrencyAmount
 
 
 class TradeObject:
-    def __init__(self, query):
+    def __init__(self, query, nth_result=0):
         self.query = query
         self.price = None
+        self.nth_result = nth_result
 
-    def fetch_price(self, nth_result=0):
+    def fetch_price(self):
         if self.price is None:
             headers = {'User-Agent': 'PoeProfitCalc (https://github.com/Dakri7/PoeProfitCalc.git)', 'accept': 'application/json'}
             curr_league = league.get_current_league()
@@ -20,7 +21,7 @@ class TradeObject:
             query_response = ratelimited_requests.post(api_endpoint, json=query_string, headers=headers)
             query_data = json.loads(query_response.content)
 
-            item_id = query_data['result'][nth_result]
+            item_id = query_data['result'][self.nth_result]
             query_id = query_data['id']
             item_url = "https://www.pathofexile.com/api/trade/fetch/" + item_id + "?query=" + query_id
             item_response = ratelimited_requests.get(item_url, headers=headers)

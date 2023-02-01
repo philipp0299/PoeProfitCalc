@@ -13,7 +13,7 @@ import strategies.crafting as crafting
 #print("Scarab Exchange:", scarab_farms.gilded_scarab_exchange.calc_profit())
 #print("Scarab Farm:", scarab_farms.gilded_sextant_farm.calc_profit())
 
-print("Crafing RF Helmet", crafting.finish_rf_helmet_strat.calc_profit())
-print(crafting.finish_rf_helmet_strat)
+print("Crafting Diamond Flask", crafting.finish_diamond_flask_strat.calc_profit())
+print(crafting.finish_diamond_flask_strat)
 
 
