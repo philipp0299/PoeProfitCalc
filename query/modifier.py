@@ -1,3 +1,5 @@
+import json
+
 class Modifier:
     def __init__(self, modifier_id, vmin=None, vmax=None, option=None):
         self.modifier_id = modifier_id
@@ -35,3 +37,31 @@ class Modifier:
             return self.modifier_id + " > " + str(self.vmin)
         if self.vmax is not None:
             return self.modifier_id + " < " + str(self.vmax)
+
+
+_all_modifiers = {}
+
+
+def parse_modifier_list():
+    global _all_modifiers
+    modifiers_types = ["pseudo", "explicit", "implicit", "fractured", "enchant", "crafted", "veiled", "monster", "delve", "ultimatum"]
+    _all_modifiers = {mod_type: {} for mod_type in modifiers_types}
+    f = open('id_to_modifier.json')
+    data = json.load(f)
+    for i, mod_group_i in enumerate(data['result']):
+        mod_type = modifiers_types[i]
+        for modifier_i in mod_group_i["entries"]:
+            text = ""
+            if isinstance(modifier_i["text"], list):
+                for part_i in modifier_i["text"]:
+                    text += part_i
+            else:
+                text = modifier_i["text"]
+            _all_modifiers[mod_type][text] = modifier_i["id"]
+
+
+def from_text(text, mod_type="explicit", *argv, **kwargs):
+    return Modifier(_all_modifiers[mod_type][text], *argv, **kwargs)
+
+
+parse_modifier_list()

@@ -11,3 +11,5 @@ class Strategy:
 
     def __str__(self):
         return str(self.educts) + " => " + str(self.products)
+
+    # TODO: Printable instructions with trade links
