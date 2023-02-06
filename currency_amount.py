@@ -12,24 +12,28 @@ class CurrencyAmount:
         return str(self.amount) + " " + self.type
 
     def __add__(self, other):
-        other_amount = other.convert_to(self.type)
+        other_amount = other.converted_amount(self.type)
         return CurrencyAmount(self.amount + other_amount, self.type)
 
     def __sub__(self, other):
-        other_amount = other.convert_to(self.type)
+        other_amount = other.converted_amount(self.type)
         return CurrencyAmount(self.amount - other_amount, self.type)
 
     def __mul__(self, other):
         return CurrencyAmount(self.amount * other, self.type)
 
     def __lt__(self, other):
-        other_amount = other.convert_to(self.type)
+        other_amount = other.converted_amount(self.type)
         return self.amount < other_amount
 
-    def convert_to(self, target):
+    def converted_amount(self, target):
         chaos_equiv_self = chaos_equivalance_of_name(self.type)
         chaos_equiv_target = chaos_equivalance_of_name(target)
         return self.amount * chaos_equiv_self / chaos_equiv_target
+
+    def change_type(self, target):
+        self.amount = self.converted_amount(target)
+        self.type = target
 
     def fetch_price(self):
         return self

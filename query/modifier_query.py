@@ -3,7 +3,7 @@ from query.filter import Filter
 
 class ModifierQuery:
 
-    def __init__(self, *modifiers, base_type=None):
+    def __init__(self, *modifiers, base_type=None, name=None):
         if type(modifiers) is tuple:
             if type(modifiers[0]) is Filter:
                 self.filters = list(map(lambda mod: mod.to_json(), modifiers))
@@ -15,6 +15,7 @@ class ModifierQuery:
             else:
                 self.filters = [Filter(modifiers)]
         self.base_type = base_type
+        self.name = name
         self.modifiers = list(modifiers)
 
     def get_query_string(self):
@@ -22,6 +23,7 @@ class ModifierQuery:
             return {
                 "query": {
                     "stats": self.filters,
+                    "name": self.name,
                     "status": "online"
                 }
             }
@@ -29,6 +31,7 @@ class ModifierQuery:
             return {
                 "query": {
                     "type": self.base_type,
+                    "name": self.name,
                     "stats": self.filters,
                     "status": "online"
                 }

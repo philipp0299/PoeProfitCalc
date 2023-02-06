@@ -23,9 +23,9 @@ def init():
 
     global double_corrupt_squire_strat
     shieldbearer = TradeObject(TypeQuery("The Shieldbearer"), nth_result=7)
-    squire = TradeObject(NameQuery("The Squire"))
+    squire = TradeObject(NameQuery("The Squire"), nth_result=3)
 
-    plus_one_squire = TradeObject(ModifierQuery(modifier.from_text("# to Level of Socketed Gems", "implicit")))
+    plus_one_squire = TradeObject(ModifierQuery(modifier.from_text("# to Level of Socketed Gems", "implicit"), name="The Squire"))
 
     double_corrupt_squire_strat = Strategy(QuantityList().append(shieldbearer, 8),
                                            StochasticList().append(squire, 0.25 + (0.25 * 0.6)).append(plus_one_squire, 0.25 * 0.4))
