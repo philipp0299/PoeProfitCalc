@@ -6,7 +6,8 @@ from query.type_query import TypeQuery
 from strategy import Strategy
 from trade_object import TradeObject
 import query.modifier as modifier
-from object_lists.stochastic_list import StochasticList
+from object_lists.stochasticly_independent_list import StochasticlyIndependentList
+from object_lists.stochasticly_exclusive_list import StochasticlyExclusiveList
 
 spirit_drinker_upgrade_strat = None
 double_corrupt_squire_strat = None
@@ -28,5 +29,5 @@ def init():
     plus_one_squire = TradeObject(ModifierQuery(modifier.from_text("# to Level of Socketed Gems", "implicit"), name="The Squire"))
 
     double_corrupt_squire_strat = Strategy(QuantityList().append(shieldbearer, 8),
-                                           StochasticList().append(squire, 0.25 + (0.25 * 0.6)).append(plus_one_squire, 0.25 * 0.4))
+                                           StochasticlyExclusiveList().append(squire, 0.25 + (0.25 * 0.6)).append(plus_one_squire, 0.25 * 0.4))
 init()

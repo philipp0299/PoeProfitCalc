@@ -19,23 +19,17 @@ class ModifierQuery:
         self.modifiers = list(modifiers)
 
     def get_query_string(self):
-        if self.base_type is None:
-            return {
+        back = {
                 "query": {
-                    "stats": self.filters,
-                    "name": self.name,
-                    "status": "online"
-                }
-            }
-        else:
-            return {
-                "query": {
-                    "type": self.base_type,
-                    "name": self.name,
                     "stats": self.filters,
                     "status": "online"
                 }
-            }
+        }
+        if self.base_type is not None:
+            back["query"]["type"] = self.base_type
+        if self.name is not None:
+            back["query"]["name"] = self.name
+        return back
 
     def __str__(self):
         if len(self.modifiers) > 1:

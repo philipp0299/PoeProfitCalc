@@ -1,6 +1,6 @@
 from bulk_object import BulkObject
 from object_lists.quantity_list import QuantityList
-from object_lists.stochastic_list import StochasticList
+from object_lists.stochasticly_independent_list import StochasticlyIndependentList
 from query.custom_query import CustomQuery
 from strategy import Strategy
 from trade_object import TradeObject
@@ -17,7 +17,7 @@ def init():
     shaper_frags = QuantityList().append(hydra).append(phoenix).append(chimera).append(minotaur)
     knowledge = BulkObject("fragment-of-knowledge", "chaos", 2)
     shape = BulkObject("fragment-of-shape", "chaos", 2)
-    uber_elder_frags_shaper = StochasticList().append(knowledge, 0.5).append(shape, 0.5)
+    uber_elder_frags_shaper = StochasticlyIndependentList().append(knowledge, 0.5).append(shape, 0.5)
 
     global shaper_farm
     shaper_farm = Strategy(shaper_frags, uber_elder_frags_shaper)
@@ -58,7 +58,7 @@ def init():
         }
     }))
 
-    elder_drops = StochasticList().append(terror, 0.5).append(emptiness, 0.5).append(unid_watchers_eye, 0.35)
+    elder_drops = StochasticlyIndependentList().append(terror, 0.5).append(emptiness, 0.5).append(unid_watchers_eye, 0.35)
 
     global elder_farm
     elder_farm = Strategy(elder_frags, elder_drops)
@@ -95,7 +95,7 @@ def init():
         }
     }))
 
-    uber_elder_drops = StochasticList().append(unid_watchers_eye_i86, 0.35)
+    uber_elder_drops = StochasticlyIndependentList().append(unid_watchers_eye_i86, 0.35)
 
     global uber_elder_farm
     uber_elder_farm = Strategy(uber_elder_frags, uber_elder_drops)

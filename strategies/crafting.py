@@ -7,7 +7,7 @@ from query.name_query import NameQuery
 from query.type_query import TypeQuery
 from trade_object import TradeObject
 from strategy import Strategy
-from object_lists.stochastic_list import StochasticList
+from object_lists.stochasticly_independent_list import StochasticlyIndependentList
 from currency_amount import CurrencyAmount
 import query.modifier as modifier
 
@@ -48,7 +48,7 @@ def init():
     chance_to_fail = three_mod * (1 - 0.377)  # 0.377 is the chance to hit +2 without a crafted mod
 
     finish_rf_helmet_strat = Strategy(
-        StochasticList()
+        StochasticlyIndependentList()
         .append(meta_craft_beast, 2.29)
         .append(CurrencyAmount(1, "veiled-chaos-orb"), 2.29)
         .append(CurrencyAmount(4, "chaos"), 2.29)  # craft cost of + number of zombies/skeletons
@@ -64,9 +64,9 @@ def init():
                                                        modifier.from_text("#% increased effect"),
                                                        base_type="Diamond Flask"), nth_result=2)
 
-    finish_diamond_flask_strat = Strategy(StochasticList().append(unfinished_diamond_flask, 1)
+    finish_diamond_flask_strat = Strategy(StochasticlyIndependentList().append(unfinished_diamond_flask, 1)
                                           .append(CurrencyAmount(1, "enkindling-orb"), 26),
-                                          StochasticList().append(finished_diamond_flask, 0.13514))
+                                          StochasticlyIndependentList().append(finished_diamond_flask, 0.13514))
 
 
 

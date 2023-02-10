@@ -3,7 +3,7 @@ import copy
 
 from object_lists.evenly_distributed_list import EvenlyDistributedList
 from object_lists.quantity_list import QuantityList
-from object_lists.stochastic_list import StochasticList
+from object_lists.stochasticly_independent_list import StochasticlyIndependentList
 from strategy import Strategy
 
 change_essence_strat = None
