@@ -15,3 +15,14 @@ class EvenlyDistributedList:
         for i in range(len(self.list)):
             sum_price += self.list[i].fetch_price() * (1 / len(self.list))
         return sum_price * self.count_drops
+
+    def __str__(self):
+        back = ""
+        for i in range(len(self.list)):
+            if not i == 0:
+                back += ", "
+            if type(self.list[i]) is CurrencyAmount:
+                back += str(self.list[i] * self.quantity[i])
+            else:
+                back += str(self.list[i])
+        return back

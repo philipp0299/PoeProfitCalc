@@ -40,5 +40,6 @@ def handle_rate_limits(response):
         else:
             wait_duration = queue[0] + window_size - time.time()
             time.sleep(wait_duration)
+            queue.append(time.time())
             queue = list(filter(lambda timestamp: timestamp > time.time() - window_size, queue))
         rate_limit_queues[limit] = queue

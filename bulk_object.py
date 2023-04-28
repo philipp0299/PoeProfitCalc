@@ -38,3 +38,8 @@ class BulkObject:
             self.price = CurrencyAmount(cost_for_all / obj_amount, self.cost_tag)
         return self.price
 
+    def __str__(self):
+        if self.price is None:
+            return str(self.obj_tag)
+        else:
+            return str(self.obj_tag) + " for " + str(self.price)

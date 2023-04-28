@@ -27,6 +27,7 @@ class StochasticlyExclusiveList(QuantityList):
         return n
 
     def chance_for_profit(self, n, spendings_per_trial, min_profit):
+        # TODO Maybe approximate using normal distribution?
         if type(spendings_per_trial) is CurrencyAmount:
             spendings_per_trial = spendings_per_trial.fetch_price().converted_amount("chaos")
         profits = [x_i - spendings_per_trial for x_i in self.pi]
